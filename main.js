@@ -1,53 +1,82 @@
-const xhr = new XMLHttpRequest();
-xhr.open("GET", "https://jsonplaceholder.typicode.com/todos/1", true);
-xhr.onload = function(){
-    if (xhr.status === 200){
-        console.log("Data recived", xhr.responseText);
-    } else {
-        console.error("Error:", xhr.status);
-        
+fetch('https://jsonplaceholder.typicode.com/todos/1')
+.then(responce => {
+    if(responce.ok){
+        return responce.json()
     }
-};
-xhr.send();
+    throw new Error("Network does not ok!")
+})
+.then(data =>{
+    console.log("data recived", data);
+})
 
-const xhr = new XMLHttpRequest();
-xhr.open("POST", "https://jsonplaceholder.org/users", true);
-xhr.setRequestHeader("Content-Type", "aplication/json")
-xhr.onload = function(){
-    if (xhr.status === 201){
-        console.log("Data Posted", xhr.responseText);
-    } else {
-        console.error("Error:", xhr.status);
-        
+.catch(error =>{
+    console.error("Error", error)
+})
+
+fetch('https://jsonplaceholder.org/users', {
+    method: "POST",
+    headers: {
+        'Content-Type' : 'aplication/json'
+    },
+    body: JSON.stringify({
+        name: "Bob",
+        age: 30
+    })
+})
+
+.then(responce => {
+    if(responce.ok){
+        return responce.json()
     }
-};
-const data = JSON.stringify({name:"Bob", age: 30})
-xhr.send(data);
+    throw new Error("Network does not ok!")
+})
+.then(data =>{
+    console.log("data posted", data);
+})
 
-const xhr = new XMLHttpRequest();
-xhr.open("PUT", "https://jsonplaceholder.org/users/1", true);
-xhr.setRequestHeader("Content-Type", "aplication/json")
-xhr.onload = function(){
-    if (xhr.status === 200){
-        console.log("Data update", xhr.responseText);
-    } else {
-        console.error("Error:", xhr.status);
-        
+.catch(error =>{
+    console.error("Error", error)
+})
+
+fetch('https://jsonplaceholder.org/users/1', {
+    method: "PUT",
+    headers: {
+        'Content-Type' : 'aplication/json'
+    },
+    body: JSON.stringify({
+        name: "Jack",
+        age: 54
+    })
+})
+
+.then(responce => {
+    if(responce.ok){
+        return responce.json()
     }
-};
-const data = JSON.stringify({name:"Francis", age: 40})
-xhr.send(data);
+    throw new Error("Network does not ok!")
+})
+.then(data =>{
+    console.log("data update", data);
+})
 
-const xhr = new XMLHttpRequest();
-xhr.open("DELETE", "https://jsonplaceholder.org/users/1", true);
-xhr.onload = function(){
-    if (xhr.status === 200){
-        console.log("Data delete", xhr.responseText);
-    } else {
-        console.error("Error:", xhr.status);
-        
+.catch(error =>{
+    console.error("Error", error)
+})
+
+fetch('https://jsonplaceholder.org/posts/1', {
+    method: 'DELETE'
+})
+
+.then(responce => {
+    if(responce.ok){
+        return responce.json()
     }
-};
-xhr.send();
+    throw new Error("Network does not ok!")
+})
+.then(data =>{
+    console.log("data delete", data);
+})
 
-
+.catch(error =>{
+    console.error("Error", error)
+})
